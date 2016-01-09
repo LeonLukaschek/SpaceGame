@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float speed;
 
+    [Space(10)]
     [Header("Shooting")]
     public float timeBetweenShots;
 
     public GameObject shotSpawnPoint;
     public GameObject bolt;
+
+    [Space(10)]
+    [Header("Player")]
+    public float health;
+
+    public Text healthText;
 
     [Header("Player boundary")]
 
@@ -44,6 +52,26 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+
+        healthText.text = health.ToString();
+
+        if (health < 1)
+        {
+            Die();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Asteroid")
+        {
+            Debug.Log("Collision");
+            health--;
+        }
+    }
+
+    private void Die()
+    {
     }
 
     private void Shoot()

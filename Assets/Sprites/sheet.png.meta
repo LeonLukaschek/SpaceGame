@@ -1,15 +1,23 @@
 fileFormatVersion: 2
 guid: cfb57f07e92c4814480d8545a2ab81d6
-timeCreated: 1452343398
+timeCreated: 1452362754
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sheet_0
-    21300002: sheet_1
+    21300000: UI_Bar_01
+    21300002: UI_Bar_02
     21300004: sheet_2
     21300006: sheet_3
-    21300008: sheet_4
-    21300010: sheet_5
+    21300008: Asteroid_01
+    21300010: Asteroid_02
+    21300012: Asteroid_03
+    21300014: Asteroid_04
+    21300016: sheet_8
+    21300018: UI_Bar_03
+    21300020: UI_Star
+    21300022: UI_Block_Green
+    21300024: sheet_0
+    21300026: UI_Shield_Green
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,7 +64,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: sheet_0
+    - name: UI_Bar_01
       rect:
         serializedVersion: 2
         x: 0
@@ -66,7 +74,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sheet_1
+    - name: UI_Bar_02
       rect:
         serializedVersion: 2
         x: 0
@@ -96,7 +104,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sheet_4
+    - name: Asteroid_01
       rect:
         serializedVersion: 2
         x: 0
@@ -106,13 +114,93 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sheet_5
+    - name: Asteroid_02
       rect:
         serializedVersion: 2
         x: 0
         y: 309
         width: 119
         height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Asteroid_03
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 380
+        width: 98
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Asteroid_04
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 278
+        width: 101
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sheet_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 214
+        width: 89
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Bar_03
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 906
+        width: 222
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Star
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 501
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Block_Green
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 378
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 869
+        width: 222
+        height: 37
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Shield_Green
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 129
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

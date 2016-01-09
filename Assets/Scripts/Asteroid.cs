@@ -25,4 +25,9 @@ public class Asteroid : MonoBehaviour
         Vector3 rot = new Vector3(0, 0, rotSpeed);
         transform.Rotate(rot);
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject, 1f);
+    }
 }
