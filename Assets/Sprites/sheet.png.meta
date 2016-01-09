@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cfb57f07e92c4814480d8545a2ab81d6
-timeCreated: 1452266747
+timeCreated: 1452343398
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,8 @@ TextureImporter:
     21300002: sheet_1
     21300004: sheet_2
     21300006: sheet_3
+    21300008: sheet_4
+    21300010: sheet_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -91,6 +93,26 @@ TextureImporter:
         y: 340
         width: 11
         height: 37
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 407
+        width: 119
+        height: 96
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 309
+        width: 119
+        height: 96
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
