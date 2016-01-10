@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject shotSpawnPoint;
     public GameObject bolt;
 
+    public AudioSource shotSound;
+
     [Space(10)]
     [Header("Player")]
     public float health;
@@ -28,8 +30,11 @@ public class PlayerController : MonoBehaviour
 
     public float yMin, yMax;
 
+    private GameManager gc;
+
     private void Start()
     {
+        gc = GameObject.Find("Gamemanager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -65,17 +70,19 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Asteroid")
         {
-            Debug.Log("Collision");
             health--;
         }
     }
 
     private void Die()
     {
+        gc.GameOver();
     }
 
     private void Shoot()
     {
-        Instantiate(bolt, shotSpawnPoint.transform.position, transform.rotation);
+        GameObject spawnedBolt = Instantiate(bolt, shotSpawnPoint.transform.position, transform.rotation) as GameObject;
+        spawnedBolt.transform.SetParent(GameObject.Find("Holder").transform);
+        shotSound.Play();
     }
 }

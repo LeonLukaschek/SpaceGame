@@ -30,4 +30,12 @@ public class Asteroid : MonoBehaviour
     {
         Destroy(this.gameObject, 1f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bolt")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

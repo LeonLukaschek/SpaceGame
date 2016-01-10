@@ -26,16 +26,32 @@ public class GameManager : MonoBehaviour
     [Space(5)]
     public Text waveText;
 
+    [Space(10)]
+    [Header("Game Over")]
+    public Text gameOverText;
+
+    public Text gameOverScoreText;
+    public Text playerHealthText;
+
+    public GameObject gameOverPlane;
+
+    public float fadeTime;
+
+    private bool gameOver;
+    private ScoreSystem scoreSystem;
+
     private void Start()
     {
         StartCoroutine("WaveManager");
+        scoreSystem = GameObject.Find("ScoreSystem").GetComponent<ScoreSystem>();
+        gameOver = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (gameOver)
         {
-            SpawnAsteroid();
+            StopCoroutine(WaveManager());
         }
     }
 
@@ -52,7 +68,7 @@ public class GameManager : MonoBehaviour
             for (int y = 0; y < asteroidsPerWave; y++)
             {
                 SpawnAsteroid();
-                Debug.Log("Spawing asteroid");
+
                 yield return new WaitForSeconds(timeBetweenSpawns);
             }
 
@@ -81,5 +97,22 @@ public class GameManager : MonoBehaviour
         GameObject spawnedAsteroid = Instantiate(asteroids[randNummer], randomPosition, Quaternion.identity) as GameObject;
 
         spawnedAsteroid.transform.SetParent(GameObject.Find("Holder").transform);
+    }
+
+    public void GameOver()
+    {
+        gameOver = true;
+
+        Color c = gameOverPlane.GetComponent<Renderer>().material.color;
+        c.a += fadeTime;
+        gameOverPlane.GetComponent<Renderer>().material.color = c;
+
+        playerHealthText.gameObject.SetActive(false);
+
+        gameOverText.gameObject.SetActive(true);
+
+        gameOverScoreText.gameObject.SetActive(true);
+
+        gameOverScoreText.text = "Score:                   " + scoreSystem.currentScore.ToString() + "\n+ Wave bonus (" + curentWave.ToString() + " x5): " + curentWave * 5 + "\nTotal Score:           " + (scoreSystem.currentScore + (curentWave * 5));
     }
 }
