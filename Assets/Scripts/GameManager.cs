@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
     public float waveCount;
 
     public float asteroidsPerWave;
+    private float _asteroidsPerWave;
     public float timeBetweenWaves;
     public float timeBetweenSpawns;
     public float startDelay;
     public int curentWave;
+    private int _curentWave;
 
     [Space(5)]
     public bool increaseNumberOfAsteroids;
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
 
     [Space(10)]
     [Header("Game Over")]
+    public bool gameOver;
+
+    public float fadeTime;
+    public float restartDelay;
+
     public Text gameOverText;
 
     public Text gameOverScoreText;
@@ -35,23 +42,29 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPlane;
 
-    public float fadeTime;
-
-    private bool gameOver;
     private ScoreSystem scoreSystem;
+    private PlayerController player;
 
     private void Start()
     {
-        StartCoroutine("WaveManager");
         scoreSystem = GameObject.Find("ScoreSystem").GetComponent<ScoreSystem>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        StartCoroutine("WaveManager");
         gameOver = false;
+
+        _asteroidsPerWave = asteroidsPerWave;
     }
 
     private void Update()
     {
         if (gameOver)
         {
-            StopCoroutine(WaveManager());
+            StopAllCoroutines();
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            Restart();
         }
     }
 
@@ -59,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(startDelay);
 
-        for (int i = 0; i < waveCount; i++)
+        for (int i = 0; ; i++)
         {
             curentWave = i + 1;
 
@@ -86,6 +99,35 @@ public class GameManager : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetweenWaves);
         }
+    }
+
+    private void Restart()
+    {
+        //No more gameOver
+        gameOver = false;
+
+        //Revert the fade in and remove the gameOverPanel
+        Color c = gameOverPlane.GetComponent<Renderer>().material.color;
+        c.a = 0;
+        gameOverPlane.GetComponent<Renderer>().material.color = c;
+        //Enable hp text
+        playerHealthText.gameObject.SetActive(true);
+        //disable gameover Text
+        gameOverText.gameObject.SetActive(false);
+        //disable game over score
+        gameOverScoreText.gameObject.SetActive(false);
+        //reset game over text
+        gameOverScoreText.text = "";
+        //Player health = starting health
+        player.health = player._health;
+        //reset score
+        scoreSystem.currentScore = 0;
+        //reset asteroids per wave
+        asteroidsPerWave = _asteroidsPerWave;
+        //Extra starting delay
+        startDelay = restartDelay;
+        //restart wave manager for asteroids spawning
+        StartCoroutine(WaveManager());
     }
 
     private void SpawnAsteroid()

@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     [Header("Player")]
     public float health;
 
+    [HideInInspector]
+    public float _health;
+
     public Text healthText;
 
     [Header("Player boundary")]
@@ -35,32 +38,36 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         gc = GameObject.Find("Gamemanager").GetComponent<GameManager>();
+
+        _health = health;
     }
 
     private void Update()
     {
-        //Moving
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-
-        transform.position += move * speed * Time.deltaTime;
-
-        //Limit player position
-        transform.position = new Vector3
-             (
-                 Mathf.Clamp(transform.position.x, xMin, xMax),
-                 Mathf.Clamp(transform.position.y, yMin, yMax),
-                 1
-                 );
-
-        //Shooting
-        if (Input.GetButtonDown("Fire1"))
+        if (!gc.gameOver)
         {
-            Shoot();
-        }
+            //Moving
+            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
+            transform.position += move * speed * Time.deltaTime;
+
+            //Limit player position
+            transform.position = new Vector3
+                 (
+                     Mathf.Clamp(transform.position.x, xMin, xMax),
+                     Mathf.Clamp(transform.position.y, yMin, yMax),
+                     1
+                     );
+
+            //Shooting
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
+        }
         healthText.text = health.ToString();
 
-        if (health < 1)
+        if (health <= 0)
         {
             Die();
         }
